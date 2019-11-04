@@ -1,0 +1,31 @@
+version: '3'
+services:
+  db:
+    container_name: soccer-pg
+    image: postgres:10-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: secret
+    volumes:
+      - /volumes/postgresql_data-10:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - soccer
+
+  web:
+    container_name: soccer-web
+    image: valmirjunior/rails:1.0.1    
+    volumes:
+      - .:/rails/soccer
+      - ./bundle:/usr/local/bundle
+    command: /bin/sh
+    tty: true
+    ports:
+      - "3000:3000"
+    networks:
+      - soccer
+
+networks:
+  soccer:
+    driver: bridge
