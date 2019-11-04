@@ -7,27 +7,12 @@ services:
     environment:
       POSTGRES_PASSWORD: secret
     volumes:
-      - /volumes/postgres:/var/lib/postgresql/data
+      - /volumes/postgresql_data-10:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     networks:
       - soccer
 
-  db-admin:
-    container_name: soccer-admin
-    image: dpage/pgadmin4
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=postgres
-      - PGADMIN_DEFAULT_PASSWORD=123
-    volumes:
-      - /volumes/pgadmin:/var/lib/pgadmin
-      - /volumes/pgadmin_certificate.cert:/certs/server.cert
-      - /volumes/pgadmin_certificate.key:/certs/server.key
-      - /volumes/pgadmin_servers.json:/servers.json
-    ports:
-      - "80:80"
-    networks:
-      - soccer
   web:
     container_name: soccer-web
     image: valmirjunior/rails:1.0.1    
