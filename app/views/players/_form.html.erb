@@ -12,6 +12,12 @@
   <% end %>
 
   <div class="field">
+    <% if player.avatar.attached? %>
+      <%= image_tag @player.avatar.variant(resize_to_limit: [100, 100]) %> <br/>
+    <% end %>
+  </div>
+
+  <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
@@ -19,6 +25,10 @@
   <div class="field">
     <%= form.label :age %>
     <%= form.number_field :age %>
+  </div>
+
+  <div class="field">
+    <%= form.file_field :avatar %>
   </div>
 
   <div class="actions">
