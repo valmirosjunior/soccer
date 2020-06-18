@@ -14,7 +14,7 @@ before_script:
 build:
   stage: build
   script:
-    - echo "sytem: $(uname -s)-$(uname -m)"
+    - echo "$(uname -s)-$(uname -m)"
     - docker --version
     - apt update && apt install -y curl
     - curl -L "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
