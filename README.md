@@ -1,22 +1,31 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup
 
-Things you may want to cover:
+- Up and access container
 
-* Ruby version
+```shell script
+docker-compose up -d
+docker exec -it soccer-web bash
+```
 
-* System dependencies
+- <strong>At container</strong> Install depencies
 
-* Configuration
+```shell script
+bundle instal
+yarn install --check-files
+```
 
-* Database creation
+- Create database and run migrations
+```shell script
+rails db:create
+rails db:migrate
+```
 
-* Database initialization
+## How to run
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+```shell script
+docker-compose up -d
+docker exec -it soccer-web rails s -b 0
+```
